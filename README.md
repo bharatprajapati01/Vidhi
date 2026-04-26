@@ -14,7 +14,6 @@ VIDHI is a Python-based voice assistant that continuously listens to user comman
 - 🧮 Basic calculator (safe evaluation)
 - ⏳ Set reminders (with background thread)
 - 📝 Save and read notes
-- 🌦️ Get weather updates
 - 📰 Fetch latest news headlines
 - 📚 Wikipedia search
 
@@ -53,13 +52,11 @@ It responds back using text-to-speech.
 "Remind me in 2 minutes to study"
 "Remember that I have an exam tomorrow"
 "Read my notes"
-"Weather in Delhi"
 "Tell me about Python"
 
 🔐 Notes
 Internet connection is required for:
 Speech recognition
-Weather updates
 News
 Wikipedia
 Reminders and notes are saved locally in JSON files.
