@@ -22,14 +22,13 @@ import wikipedia
 # --------------------------------------------------
 REMINDER_FILE = "vidhi_reminders.json"
 NOTES_FILE = "vidhi_notes.json"
-WEATHER_API_KEY = "576a4150bb1f1adb56a87ab1a9671e30"
 NEWS_URL = "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
 # --------------------------------------------------
-# TTS ENGINE (FEMALE VOICE)
+# TTS ENGINE
 # --------------------------------------------------
 def speak(text):
     try:
-        engine = pyttsx3.init()   # 🔥 re-create engine every time
+        engine = pyttsx3.init()  
         voices = engine.getProperty("voices")
         engine.setProperty("voice", voices[1].id if len(voices) > 1 else voices[0].id)
         engine.setProperty("rate", 170)
@@ -113,16 +112,6 @@ def load_notes():
 def save_notes(notes):
     with open(NOTES_FILE, "w") as f:
         json.dump(notes, f)
-# --------------------------------------------------
-# WEATHER
-# --------------------------------------------------
-def get_weather(city):
-    try:
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={WEATHER_API_KEY}&units=metric"
-        data = requests.get(url, timeout=5).json()
-        return f"{city.title()} is {data['main']['temp']} degree Celsius"
-    except:
-        return "Weather service error"
 # --------------------------------------------------
 # NEWS
 # --------------------------------------------------
@@ -215,10 +204,6 @@ def assistant():
         elif "clear my notes" in query:
             save_notes([])
             speak("All notes deleted")
-        # WEATHER
-        elif "weather" in query:
-            city = query.replace("weather", "").replace("in", "").strip() or "london"
-            speak(get_weather(city))
         # NEWS
         elif "news" in query:
             speak(get_news())
@@ -231,5 +216,3 @@ def assistant():
 # RUN
 # --------------------------------------------------
 assistant()
-
-# pip install SpeechRecognition
